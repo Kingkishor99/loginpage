@@ -14,8 +14,8 @@
     padding: 10px 30px;
     position: absolute;
     border-radius: 40px;
-    margin-left: 60vw;
-    margin-top: 10vh;
+    margin: 2vh 30px 0px 60%;
+
 
 }
 
@@ -89,6 +89,8 @@
     margin-left: -400px;
     margin-top: 250px;
     transition: margin 1s ease-in-out;
+    box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
+
 }
 
 .tosted {
@@ -101,11 +103,14 @@
     margin-left: 30px;
     margin-top: 250px;
     transition: margin 1s ease-in-out;
+    box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
+
 }
 
 .signin {
-    margin-left: 70vw;
+    margin-left: 70%;
     font-size: large;
+    width: 100%;
 }
 
 .signinbutton {
@@ -121,7 +126,24 @@
     font-size: large;
     padding: 0px 20px;
     box-shadow: 0px 10px 20px 5px #dd2901a9;
+}
 
+.error {
+    color: red;
+    width: 300px;
+}
 
+.logout {
+    appearance: none;
+    border: none;
+    background-color: rgb(0, 89, 255);
+    padding: 10px 20px;
+    font-size: 2vw;
+    color: white;
+    border-radius: 10px;
+    position: fixed;
+    margin-left: 40px;
+    margin-top: 25px;
+    box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
 
 }

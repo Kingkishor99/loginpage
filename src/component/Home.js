@@ -28,7 +28,7 @@ function Home() {
 
 
     return (
-        <div>
+        <div className='home' >
             {currentUser ? (<button onClick={e => exit(e)} className='logout'>Logout</button>) : ("")}
             <div className={a}>
                 Login Successful...

@@ -3,20 +3,32 @@
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
+    position: relative;
 }
 
 .form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 3px solid #DD2A01;
+    border: 3px solid #dd2901a2;
     display: inline-block;
     padding: 10px 30px;
     position: absolute;
     border-radius: 40px;
-    margin: 2vh 30px 0px 60%;
+    margin: 2vh 0px 0px 60%;
+    right: 8vw;
+    top: 70px;
+    background-color: rgba(255, 255, 255, 0.651);
+    transition: height 0.5s ease-in-out;
 
 
+}
+
+body {
+    background-image: url(bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
 .title {
@@ -71,6 +83,7 @@
 
 .form>div {
     margin: 30px 0px;
+    transition: margin 0.5s ease-in-out;
 }
 
 .checkbox {
@@ -108,9 +121,12 @@
 }
 
 .signin {
-    margin-left: 70%;
+
+    right: 9vw;
+    top: 10px;
     font-size: large;
-    width: 100%;
+
+    position: absolute;
 }
 
 .signinbutton {
@@ -145,5 +161,45 @@
     margin-left: 40px;
     margin-top: 25px;
     box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
+
+}
+
+.input,
+.extracontent,
+.error {
+
+    transition: width 0.5s ease-in-out;
+}
+
+@media (max-width:700px) {
+
+    .input,
+    .extracontent,
+    .error {
+        width: 200px;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .extracontent {
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50px;
+    }
+
+    .title {
+
+        font-size: 30px;
+    }
+
+    .form>div {
+        margin: 10px 0px;
+        transition: margin 0.5s ease-in-out;
+    }
+
+    .logout,
+    .tost,
+    .tosted {
+        font-size: 4vw;
+    }
 
 }

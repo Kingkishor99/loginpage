@@ -13,17 +13,17 @@ const firebaseConfig = {
 
 
 export const fire = initializeApp(firebaseConfig);
-const auth = getAuth();
+export const auth = getAuth();
 
 export const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
-
 }
 
 export const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
 
 }
+
 export const logout = () => {
     return signOut(auth)
 }

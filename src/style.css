@@ -196,6 +196,10 @@ body {
         transition: margin 0.5s ease-in-out;
     }
 
+    .form {
+        right: 35px;
+    }
+
     .logout,
     .tost,
     .tosted {

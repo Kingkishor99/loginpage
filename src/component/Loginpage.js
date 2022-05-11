@@ -13,7 +13,7 @@ function Loginpage() {
     const email = useRef()
     const password = useRef()
     const re_enter = useRef()
-    const user = useRef()
+    const us = useRef()
     const currentUser = useAuth()
 
     const loginhandle = async (e) => {
@@ -21,9 +21,8 @@ function Loginpage() {
         try {
             await login(email.current.value, password.current.value)
             history.push("/home")
-        } catch {
-            setError("Failed to Login")
-
+        } catch (error) {
+            setError(error.code)
         }
 
         password.current.value = ""
@@ -31,24 +30,37 @@ function Loginpage() {
 
 
 
+
+
+
     const signinhandler = async (e) => {
         // console.log("signinhandler")
+        console.log(us.current.value)
+
         if (password.current.value == re_enter.current.value) {
             var passcode = password.current.value
         } else {
             setError("Password did not match")
         }
 
+
         try {
             await signup(email.current.value, passcode)
+
             history.push("/home")
-        } catch {
-            setError("Failed to Sign Up")
+
+        } catch (error) {
+            setError(error.code)
         }
+        // fire.database.ref('user').set({ n: us.current.value })
         document.querySelector(".input").value = ""
         re_enter.current.value = ""
         password.current.value = ""
+
     }
+
+
+
 
     const formchange = e => {
         setA(1)
@@ -110,7 +122,7 @@ function Loginpage() {
                     <div>
                         <div>
                             <div>User Name</div>
-                            <input ref={user} className="input" placeholder='Enter Name' />
+                            <input ref={us} className="input" placeholder='Enter Name' />
                         </div>
                     </div> : ("")
                 }

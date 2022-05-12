@@ -198,12 +198,18 @@ body {
 
     .form {
         right: 35px;
+        top: 120px;
+        transition: top 0.5s ease-in-out;
     }
 
     .logout,
     .tost,
     .tosted {
         font-size: 4vw;
+    }
+
+    body {
+        height: 900px;
     }
 
 }

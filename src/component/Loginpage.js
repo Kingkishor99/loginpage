@@ -151,7 +151,7 @@ function Loginpage() {
                 {(a !== 1) ?
                     <div className='extracontent'>
                         <span > <input type="checkbox" className='checkbox' onClick={setcookie} />Remember Me</span>
-                        <span > <Link to="/home" id='link'>Forget Your Password?</Link> </span>
+                        <span > <Link to="/chnage" id='link'>Forget Your Password?</Link> </span>
                     </div> : ("")
                 }
 

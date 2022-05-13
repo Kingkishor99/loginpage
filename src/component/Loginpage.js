@@ -16,11 +16,12 @@ function Loginpage() {
     const [passerror, setPasserror] = useState()
     const [confirmerror, setConfirmerror] = useState()
     const [checkbox, setCheckbox] = useState(0)
+    const [portal, setPoratl] = useState()
     const email = useRef()
     const password = useRef()
     const re_enter = useRef()
     const us = useRef()
-    const currentUser = useAuth()
+
 
     const loginhandle = async (e) => {
         if (checkbox == 1) {
@@ -176,15 +177,15 @@ function Loginpage() {
 
     }
 
-    const openportal = e => {
-        console.log("heeeee");
-        return <Changepassword />
+    const Openportal = (e) => {
+        setPoratl(<Changepassword port={setPoratl} />)
     }
 
 
 
     return (
         <div className='main-wrapper'>
+            {portal}
 
             <div className='signin'>
                 New to Page!  <button onClick={e => formchange(e)} className='signinbutton'>SIGN UP</button>
@@ -228,7 +229,7 @@ function Loginpage() {
                 {(a !== 1) ?
                     <div className='extracontent'>
                         <span > <input type="checkbox" className='checkbox' onClick={setcookie} />Remember Me</span>
-                        <span > <Link to="/h" id='link'>Forget Your Password?</Link> </span>
+                        <span > <div onClick={e => Openportal(e)} id='link'>Forget Your Password?</div> </span>
                     </div> : ("")
                 }
 

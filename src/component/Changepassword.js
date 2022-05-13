@@ -7,7 +7,7 @@ import { fire } from '../firebase'
 import history from '../history'
 
 
-function Changepassword() {
+function Changepassword(props) {
 
     const [errorone, setErrorone] = useState()
     const [errortwo, setErrortwo] = useState()
@@ -31,7 +31,8 @@ function Changepassword() {
                     const auth = getAuth();
                     const user = auth.currentUser;
                     updatePassword(user, pass.current.value)
-                    console.log(user);
+                    props.port("")
+                    history.push("/")
 
                 } catch (err) {
 
@@ -51,8 +52,9 @@ function Changepassword() {
 
     }
     const cancel = () => {
-        // history.push("/")
+        history.push("/")
         setClas("formthree")
+        props.port("")
     }
 
     return ReactDOM.createPortal(

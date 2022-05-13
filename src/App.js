@@ -18,7 +18,7 @@ function App() {
             <Router history={history}>
                 <Route exact path="/" component={Loginpage} />
                 <Route exact path="/Home" component={Home} />
-                <Route exact path="/h" component={Changepassword} />
+
 
 
 

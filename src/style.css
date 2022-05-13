@@ -20,8 +20,6 @@
     top: 70px;
     background-color: rgba(255, 255, 255, 0.651);
     transition: height 0.5s ease-in-out;
-
-
 }
 
 body {
@@ -38,6 +36,43 @@ body {
 
 .input:focus {
     color: black;
+}
+
+.portal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.795);
+    width: 100vw;
+    height: 100vh;
+}
+
+.formtwo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #dd2901a2;
+    display: inline-block;
+    padding: 10px 30px;
+    position: absolute;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.651);
+    transition: margin 1s ease-in-out;
+}
+
+.formthree {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid #dd2901a2;
+    display: inline-block;
+    padding: 10px 30px;
+    position: absolute;
+    margin-top: -3000px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.651);
+    transition: margin 2s ease-in-out;
 }
 
 .input {
@@ -64,6 +99,8 @@ body {
 #link {
     appearance: none;
     color: #DD2A01;
+    border-bottom: 1px solid #DD2A01;
+    cursor: pointer;
 }
 
 .login {
@@ -81,7 +118,9 @@ body {
 
 }
 
-.form>div {
+.form>div,
+.formtwo>div,
+.formthree>div {
     margin: 23px 0px;
     transition: margin 0.5s ease-in-out;
 }
@@ -125,7 +164,6 @@ body {
     right: 9vw;
     top: 10px;
     font-size: large;
-
     position: absolute;
 }
 
@@ -152,9 +190,10 @@ body {
     width: 300px;
     padding: 10px 15px;
     color: rgb(161, 15, 15);
-
+    height: auto;
     border-radius: 8px;
     margin-top: 3px;
+
 
 }
 

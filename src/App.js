@@ -6,16 +6,25 @@ import Home from './component/Home'
 import Loginpage from './component/Loginpage'
 import { Router } from "react-router-dom"
 import history from "./history"
+import Changepassword from "./component/Changepassword"
 
 
 function App() {
     return (
+
+
         <BrowserRouter>
+
             <Router history={history}>
                 <Route exact path="/" component={Loginpage} />
                 <Route exact path="/Home" component={Home} />
+                <Route exact path="/h" component={Changepassword} />
+
+
+
             </Router>
         </BrowserRouter>
+
     )
 }
 

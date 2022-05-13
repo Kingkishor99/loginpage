@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fire, login, signup, useAuth } from '../firebase'
 import history from '../history'
+import Changepassword from './Changepassword'
 
 
 function Loginpage() {
@@ -14,7 +15,7 @@ function Loginpage() {
     const [mailerror, setMailerror] = useState()
     const [passerror, setPasserror] = useState()
     const [confirmerror, setConfirmerror] = useState()
-    const [checkbox, setCheckbox] = useState(false)
+    const [checkbox, setCheckbox] = useState(0)
     const email = useRef()
     const password = useRef()
     const re_enter = useRef()
@@ -22,6 +23,11 @@ function Loginpage() {
     const currentUser = useAuth()
 
     const loginhandle = async (e) => {
+        if (checkbox == 1) {
+            document.cookie = `email= ${email.current.value}; path=http://localhost:3000/`
+            document.cookie = `password= ${password.current.value}; path=http://localhost:3000/`
+            console.log("saved");
+        }
         setPasserror("")
         setMailerror("")
         // console.log("loginhandler")
@@ -61,10 +67,7 @@ function Loginpage() {
                 };
             }
         }
-        if (checkbox) {
-            document.cookie = `email= ${email.current.value}; path=http://localhost:3000/`
-            document.cookie = `password= ${password.current.value}; path=http://localhost:3000/`
-        }
+
         password.current.value = ""
     }
 
@@ -78,62 +81,55 @@ function Loginpage() {
         setPasserror("")
         setConfirmerror("")
 
+        if (password.current.value == re_enter.current.value) {
+            var passcode = password.current.value
+        } else {
+            setConfirmerror("Password did not match")
+        }
 
         if (!us.current.value) {
             setUsererror("Enter user name")
         }
+        else if (us.current.value) {
+            try {
+                await signup(email.current.value, passcode)
+                history.push("/home")
 
-        if (password.current.value == re_enter.current.value) {
-            var passcode = password.current.value
+            } catch (error) {
+                console.log(error.code)
+                switch (error.code) {
 
-        } else {
-            setConfirmerror("Password did not match")
-
-        }
-
-
-        try {
-            await signup(email.current.value, passcode)
-
-            history.push("/home")
-
-        } catch (error) {
-            console.log(error.code)
-            switch (error.code) {
-
-                case ("auth/internal-error"): {
-                    setPasserror("Internal error");
-                    break;
-                };
-                case ("auth/invalid-password"): {
-                    setPasserror("Invalid password");
-                    break;
-                };
-                case ("auth/invalid-email"): {
-                    setMailerror("Invalid email");
-                    break;
-                };
-                case ("auth/email-already-in-use"): {
-                    setMailerror("Email already in use");
-                    break;
-                };
-                case ("auth/weak-password"): {
-                    setPasserror("Weak password");
-                    break;
-                };
-                case ("auth/weak-password"): {
-                    setPasserror("Weak password");
-                    break;
-                };
-                case ("auth/network-request-failed"): {
-                    setPasserror("Network request faild");
-                    break;
-                };
-
-
+                    case ("auth/internal-error"): {
+                        setPasserror("Internal error");
+                        break;
+                    };
+                    case ("auth/invalid-password"): {
+                        setPasserror("Invalid password");
+                        break;
+                    };
+                    case ("auth/invalid-email"): {
+                        setMailerror("Invalid email");
+                        break;
+                    };
+                    case ("auth/email-already-in-use"): {
+                        setMailerror("Email already in use");
+                        break;
+                    };
+                    case ("auth/weak-password"): {
+                        setPasserror("Weak password");
+                        break;
+                    };
+                    case ("auth/weak-password"): {
+                        setPasserror("Weak password");
+                        break;
+                    };
+                    case ("auth/network-request-failed"): {
+                        setPasserror("Network request faild");
+                        break;
+                    };
+                }
             }
         }
-
         // fire.database.ref('user').set({ n: us.current.value })
     }
 
@@ -171,14 +167,21 @@ function Loginpage() {
 
     const setcookie = () => {
 
-        if (checkbox) {
-            setCheckbox(false)
+
+        if (checkbox == 1) {
+            setCheckbox(0)
         } else {
-            setCheckbox(true)
+            setCheckbox(1)
         }
-        console.log(checkbox);
 
     }
+
+    const openportal = e => {
+        console.log("heeeee");
+        return <Changepassword />
+    }
+
+
 
     return (
         <div className='main-wrapper'>
@@ -225,7 +228,7 @@ function Loginpage() {
                 {(a !== 1) ?
                     <div className='extracontent'>
                         <span > <input type="checkbox" className='checkbox' onClick={setcookie} />Remember Me</span>
-                        <span > <Link to="/chnage" id='link'>Forget Your Password?</Link> </span>
+                        <span > <Link to="/h" id='link'>Forget Your Password?</Link> </span>
                     </div> : ("")
                 }
 

@@ -82,7 +82,7 @@ function Changepassword(props) {
                     <button className='login' onClick={e => cancel(e)}>CANCEL</button>
                 </div>
             </div>
-        </div>, document.getElementById("portal")
+        </div>, document.getElementById("modal")
 
     )
 }

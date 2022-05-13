@@ -231,30 +231,50 @@ body {
     .extracontent {
         flex-direction: column;
         justify-content: space-between;
-        height: 50px;
+        height: 40px;
+
     }
+
+    #link {
+        display: inline-block;
+
+    }
+
+    .portal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+
+    }
+
 
     .main-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-
-    .main-wrapper {
         height: 100vh;
         width: 100vw;
+        position: absolute;
     }
+
+
 
     .title {
 
         font-size: 30px;
     }
 
-    .form>div {
+    .form>div,
+    .formtwo>div,
+    .formthree>div {
         margin: 10px 0px;
         transition: margin 0.5s ease-in-out;
     }
+
+
 
     .form {
         display: inline-block;

@@ -82,7 +82,7 @@ body {
 }
 
 .form>div {
-    margin: 30px 0px;
+    margin: 23px 0px;
     transition: margin 0.5s ease-in-out;
 }
 
@@ -145,8 +145,17 @@ body {
 }
 
 .error {
-    color: red;
+    background-color: rgba(255, 0, 0, 0.315);
     width: 300px;
+    appearance: none;
+    border: none;
+    width: 300px;
+    padding: 10px 15px;
+    color: rgb(161, 15, 15);
+
+    border-radius: 8px;
+    margin-top: 3px;
+
 }
 
 .logout {

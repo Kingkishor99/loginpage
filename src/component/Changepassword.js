@@ -1,19 +1,17 @@
-import { logDOM } from '@testing-library/react'
-import { getAuth, updatePassword } from 'firebase/auth'
+import { sendPasswordResetEmail } from 'firebase/auth'
 import React, { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { scryRenderedDOMComponentsWithClass } from 'react-dom/test-utils'
-import { fire } from '../firebase'
-import history from '../history'
+import { auth, fire } from '../firebase'
+
 
 
 function Changepassword(props) {
 
     const [errorone, setErrorone] = useState()
-    const [errortwo, setErrortwo] = useState()
+
     const [clas, setClas] = useState("formthree")
-    const re = useRef()
-    const pass = useRef()
+
+    const emailID = useRef()
     useEffect(() => {
 
         setTimeout(() => setClas("formtwo"), 50)
@@ -21,38 +19,45 @@ function Changepassword(props) {
     }, [])
 
 
-    const changepasscode = () => {
+    const changepasscode = async (e) => {
 
-        if (pass.current.value.length > 5) {
+        if (emailID.current.value) {
+            try {
+                await sendPasswordResetEmail(auth, emailID.current.value)
+                alert("Password reset mail sent, please check your mail")
+                props.port("")
+            } catch (err) {
 
-            if (re.current.value == pass.current.value) {
-                try {
+                switch (err.code) {
 
-                    const auth = getAuth();
-                    const user = auth.currentUser;
-                    updatePassword(user, pass.current.value)
-                    props.port("")
-                    history.push("/")
-
-                } catch (err) {
-
-                    console.log(err.code);
+                    case ("auth/internal-error"): {
+                        setErrorone("Internal error");
+                        break;
+                    };
+                    case ("auth/invalid-email"): {
+                        setErrorone("Invalid email");
+                        break;
+                    };
+                    case ("auth/user-not-found"): {
+                        setErrorone("User not found");
+                        break;
+                    };
+                    case ("auth/network-request-failed"): {
+                        setErrorone("Network request faild");
+                        break;
+                    };
                 }
 
-
-            } else {
-                setErrortwo("Password did not match")
-                setErrorone("")
             }
+
         }
-        else {
-            setErrorone("Enter at least 6 characters")
-            setErrortwo("")
-        }
+        else { setErrorone("Enter valid Email-ID") }
+
 
     }
+
     const cancel = () => {
-        history.push("/")
+
         setClas("formthree")
         props.port("")
     }
@@ -65,17 +70,12 @@ function Changepassword(props) {
                 <div className='title'>CHANGE<br /> PASSWORD</div>
 
                 <div>
-                    <div>Password</div>
-                    <input ref={pass} className="input" type="password" placeholder='********' />
+                    <div>Email</div>
+                    <input ref={emailID} className="input" type="text" placeholder='Enter Email-Id' />
                     <div className={errorone ? 'error' : ""}>{errorone}</div>
 
                 </div>
 
-                <div>
-                    <div>Re-enter Password</div>
-                    <input ref={re} className="input" type="password" placeholder='********' />
-                    <div className={errortwo ? 'error' : ""}>{errortwo}</div>
-                </div>
 
                 <div>
                     <button className='login' onClick={e => changepasscode(e)}>SUBMIT</button>

@@ -19,9 +19,6 @@ function App() {
                 <Route exact path="/" component={Loginpage} />
                 <Route exact path="/Home" component={Home} />
 
-
-
-
             </Router>
         </BrowserRouter>
 

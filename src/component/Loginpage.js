@@ -1,7 +1,8 @@
 import { async } from '@firebase/util'
+import { updateProfile } from 'firebase/auth'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { fire, login, signup, useAuth } from '../firebase'
+import { auth, fire, login, signup, useAuth } from '../firebase'
 import history from '../history'
 import Changepassword from './Changepassword'
 
@@ -72,8 +73,6 @@ function Loginpage() {
         password.current.value = ""
     }
 
-
-
     const signinhandler = async (e) => {
         // console.log("signinhandler")
         // console.log(us.current.value)
@@ -93,7 +92,12 @@ function Loginpage() {
         }
         else if (us.current.value) {
             try {
-                await signup(email.current.value, passcode)
+                await signup(email.current.value, passcode, us)
+                    .then(() => updateProfile(auth.currentUser, {
+                        displayName: us.current.value
+                    }))
+
+
                 history.push("/home")
 
             } catch (error) {
@@ -131,14 +135,15 @@ function Loginpage() {
                 }
             }
         }
-        // fire.database.ref('user').set({ n: us.current.value })
+
     }
 
     const formchange = e => {
         setA(1)
         email.current.value = ""
         password.current.value = ""
-        // setError('')
+        setPasserror("")
+        setMailerror("")
     }
 
     useEffect(() => {

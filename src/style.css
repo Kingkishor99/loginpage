@@ -115,6 +115,7 @@ body {
     height: 50px;
     border-radius: 8px;
     font-size: large;
+    cursor: pointer;
 
 }
 
@@ -180,6 +181,7 @@ body {
     font-size: large;
     padding: 0px 20px;
     box-shadow: 0px 10px 20px 5px #dd2901a9;
+    cursor: pointer;
 }
 
 .error {
@@ -202,13 +204,47 @@ body {
     border: none;
     background-color: rgb(0, 89, 255);
     padding: 10px 20px;
-    font-size: 2vw;
+    font-size: 25px;
     color: white;
     border-radius: 10px;
-    position: fixed;
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 90px;
+    box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
+    cursor: pointer;
+
+}
+
+.displayname {
+    appearance: none;
+    border: none;
+    background-color: rgb(0, 224, 30);
+    padding: 10px 20px;
+    font-size: 25px;
+    color: white;
+    border-radius: 10px;
+    position: absolute;
     margin-left: 40px;
     margin-top: 25px;
-    box-shadow: 0px 10px 10px 1px rgba(0, 89, 255, 0.562);
+    box-shadow: 0px 10px 10px 1px rgba(0, 224, 30, 0.562);
+    cursor: pointer;
+
+
+}
+
+.remove {
+    appearance: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 25px;
+    color: white;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 40px;
+    margin-top: 155px;
+    background-color: #DD2A01;
+    box-shadow: 0px 10px 20px 5px #dd2901a9;
+    cursor: pointer;
 
 }
 
@@ -249,7 +285,6 @@ body {
 
     }
 
-
     .main-wrapper {
         display: flex;
         flex-direction: column;
@@ -260,10 +295,7 @@ body {
         position: absolute;
     }
 
-
-
     .title {
-
         font-size: 30px;
     }
 
@@ -273,8 +305,6 @@ body {
         margin: 10px 0px;
         transition: margin 0.5s ease-in-out;
     }
-
-
 
     .form {
         display: inline-block;
@@ -287,9 +317,27 @@ body {
 
     .logout,
     .tost,
-    .tosted {
-        font-size: 4vw;
+    .tosted,
+    .remove,
+    .displayname {
+        font-size: 10px;
     }
+
+    .logout {
+        top: -40px;
+        left: -30px;
+    }
+
+    .remove {
+        top: -67px;
+        left: -30px;
+    }
+
+    .displayname {
+        top: -15px;
+        left: -30px;
+    }
+
 
     body {
         height: 900px;
